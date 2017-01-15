@@ -5,10 +5,15 @@ is_osx || return 1
 [[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
 # Ensure the cask keg and recipe are installed.
-kegs=(caskroom/cask)
-brew_tap_kegs
-recipes=(brew-cask)
-brew_install_recipes
+kegs=(
+  caskroom/cask
+  homebrew/science
+  caskroom/fonts
+)
+#kegs=(caskroom/cask)
+#brew_tap_kegs
+#recipes=(brew-cask)
+#brew_install_recipes
 
 # Exit if, for some reason, cask is not installed.
 [[ ! "$(brew ls --versions brew-cask)" ]] && e_error "Brew-cask failed to install." && return 1
@@ -19,6 +24,7 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 # Homebrew casks
 casks=(
   # Applications
+  atom
   a-better-finder-rename
   charles
   chromium
