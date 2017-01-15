@@ -22,7 +22,6 @@ recipes=(
   jq
   lesspipe
   man2html
-  ngrok
   nmap
   postgres
   sl
