@@ -10,6 +10,10 @@
 # Don't commit Vim plugins, vim-plug will install them.
 /link/.vim/plugged
 
+# Don't commit Atom things
+# APM will install plugins/etc and sync-settings will do the rest.
+/link/.atom/*
+
 # Don't commit rbenv temp files.
 /link/.rbenv/shims/
 /link/.rbenv/versions/

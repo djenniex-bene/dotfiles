@@ -10,15 +10,19 @@ recipes=(
   ansible
   bash
   cmatrix
+  colordiff
   cowsay
+  gist
   git
   git-extras
+  git-lfs
   htop-osx
   hub
   id3tool
   jq
   lesspipe
   man2html
+  ngrok
   nmap
   postgres
   sl
