@@ -26,6 +26,7 @@ casks=(
   # Applications
   atom
   a-better-finder-rename
+  beyond-compare
   charles
   chromium
   easysimbl
@@ -37,9 +38,11 @@ casks=(
   hazel
   iterm2
   # karabiner NOT SUPPORTED
+  lastpass
   omnidisksweeper
   skype
   slack
+  spectacle
   sourcetree
   the-unarchiver
   #totalfinder Nice, but you have to pay
