@@ -11,6 +11,7 @@ packages=(
   linter
   merge-conflicts
   project-manager
+  php-debug
   sync-settings
   todo-show
 )
