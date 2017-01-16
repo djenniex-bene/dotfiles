@@ -9,6 +9,7 @@ kegs=(
   caskroom/cask
   homebrew/science
   caskroom/fonts
+  caskroom/versions
 )
 #kegs=(caskroom/cask)
 brew_tap_kegs
@@ -24,6 +25,7 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 # Homebrew casks
 casks=(
   # Applications
+  alfred
   atom
   a-better-finder-rename
   beyond-compare
