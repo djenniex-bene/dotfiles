@@ -31,6 +31,8 @@ casks=(
   beyond-compare
   charles
   chromium
+  docker
+  docker-toolbox
   easysimbl
   evernote
   fastscripts
