@@ -9,6 +9,7 @@ recipes=(
   android-platform-tools
   ansible
   bash
+  bash-completion
   cmatrix
   colordiff
   cowsay

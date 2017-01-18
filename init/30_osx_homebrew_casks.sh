@@ -13,11 +13,6 @@ kegs=(
   homebrew/php
 )
 brew_tap_kegs
-#recipes=(brew-cask)
-#brew_install_recipes
-
-# Exit if, for some reason, cask is not installed.
-#[[ ! "$(brew ls --versions brew-cask)" ]] && e_error "Brew-cask failed to install." && return 1
 
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
@@ -29,7 +24,7 @@ casks=(
   atom
   a-better-finder-rename
   beyond-compare
-  box-sync
+  # box-sync Weirdness because of other install
   charles
   chromium
   docker
@@ -47,7 +42,7 @@ casks=(
   mysqlworkbench
   omnidisksweeper
   skype
-  slack
+  #slack Weirdness because of other install
   spectacle
   sourcetree
   the-unarchiver
@@ -55,7 +50,6 @@ casks=(
   #tower Nice, but you have to pay
   vagrant
   virtualbox
-  virtualbox-extension-pack
   # Drivers
   # Quick Look plugins
   betterzipql

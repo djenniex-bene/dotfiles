@@ -7,5 +7,3 @@ termcap xterm 'Co#256:AB\E[48;5;%dm:AF=\E[38;5;%dm'
 defbce "on"
 
 hardstatus alwayslastline '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}[%{W}%n%f %t%?(%u)%?%{=b kR}]%{= kw}%?%+Lw%?%?%= %{g}][%{Y}%l%{g}]%{=b C}[%D %m/%d %C%a]%{W}'
-
-Contact Gi
