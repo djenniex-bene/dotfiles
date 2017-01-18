@@ -10,8 +10,8 @@ kegs=(
   homebrew/science
   caskroom/fonts
   caskroom/versions
+  homebrew/php
 )
-#kegs=(caskroom/cask)
 brew_tap_kegs
 #recipes=(brew-cask)
 #brew_install_recipes
@@ -29,6 +29,7 @@ casks=(
   atom
   a-better-finder-rename
   beyond-compare
+  box-sync
   charles
   chromium
   docker
@@ -43,6 +44,7 @@ casks=(
   iterm2
   # karabiner NOT SUPPORTED
   lastpass
+  mysqlworkbench
   omnidisksweeper
   skype
   slack
@@ -53,6 +55,7 @@ casks=(
   #tower Nice, but you have to pay
   vagrant
   virtualbox
+  virtualbox-extension-pack
   # Drivers
   # Quick Look plugins
   betterzipql

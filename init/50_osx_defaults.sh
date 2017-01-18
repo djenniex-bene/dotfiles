@@ -636,6 +636,12 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+# Always display the tabs
+defaults write com.googlecode.iterm2 HideTab -bool false
+
+# Allow Growl notifications to be posted for the current tab
+defaults write com.googlecode.iterm2 GrowlOnForegroundTabs -bool true
+
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
