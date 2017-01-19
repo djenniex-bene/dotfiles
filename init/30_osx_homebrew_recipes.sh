@@ -12,6 +12,8 @@ recipes=(
   bash-completion
   cmatrix
   colordiff
+  composer
+  composer-completion
   cowsay
   gist
   git
