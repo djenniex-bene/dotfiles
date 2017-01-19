@@ -2,6 +2,7 @@
 [[ ! "$(type -P apm)" ]] && e_error "Atom packages need Atom (and apm) to install." && return 1
 
 packages=(
+  atom-autocomplete-php
   atom-fuzzy-grep
   editor-stats
   editorconfig
@@ -9,6 +10,8 @@ packages=(
   fold-comments
   highlight-selected
   linter
+  linter-drupalcs
+  linter-jshint
   merge-conflicts
   project-manager
   php-debug

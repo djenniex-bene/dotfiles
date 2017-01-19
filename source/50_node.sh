@@ -28,10 +28,11 @@ function nave_install() {
 npm_globals=(
   babel-cli
   bower
+  eslint
   grunt-cli
   grunt-init
   linken
-  node-inspector
+  #node-inspector Fails on install, might not be needed with NodeV7
   pushstate-server
   yo
 )
