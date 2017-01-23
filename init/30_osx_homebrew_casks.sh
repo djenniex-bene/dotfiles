@@ -35,6 +35,7 @@ casks=(
   firefox
   flux
   google-chrome
+  google-play-music-desktop-player
   hazel
   iterm2
   # karabiner NOT SUPPORTED

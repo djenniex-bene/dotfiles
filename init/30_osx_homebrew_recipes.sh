@@ -15,6 +15,7 @@ recipes=(
   composer
   composer-completion
   cowsay
+  fwatch
   gist
   git
   git-extras
