@@ -15,6 +15,7 @@ recipes=(
   composer
   composer-completion
   cowsay
+  diff-so-fancy
   fwatch
   gist
   git
@@ -27,6 +28,7 @@ recipes=(
   lesspipe
   man2html
   nmap
+  phpmd
   postgres
   sl
   ssh-copy-id

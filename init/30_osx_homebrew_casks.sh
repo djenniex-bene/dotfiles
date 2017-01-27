@@ -23,6 +23,7 @@ casks=(
   alfred
   atom
   a-better-finder-rename
+  bettertouchtool
   beyond-compare
   # box-sync Weirdness because of other install
   charles
