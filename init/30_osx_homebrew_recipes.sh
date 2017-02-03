@@ -10,6 +10,9 @@ recipes=(
   ansible
   bash
   bash-completion
+  brew-cask-completion
+  chromedriver
+  cmake
   cmatrix
   colordiff
   composer
@@ -27,9 +30,12 @@ recipes=(
   jq
   lesspipe
   man2html
+  mongodb
   nmap
+  pcre
+  php56
+  php70
   phpmd
-  postgres
   sl
   ssh-copy-id
   terminal-notifier

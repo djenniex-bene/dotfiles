@@ -20,9 +20,9 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 # Homebrew casks
 casks=(
   # Applications
+  a-better-finder-rename
   alfred
   atom
-  a-better-finder-rename
   bettertouchtool
   beyond-compare
   # box-sync Weirdness because of other install
@@ -39,19 +39,21 @@ casks=(
   google-play-music-desktop-player
   hazel
   iterm2
+  java
   # karabiner NOT SUPPORTED
   lastpass
   mysqlworkbench
   omnidisksweeper
-  skype
+  phpstorm
   #slack Weirdness because of other install
   spectacle
-  sourcetree
   the-unarchiver
   #totalfinder Nice, but you have to pay
   #tower Nice, but you have to pay
-  vagrant
+  #vagrant Vagrant 1.9.1 NFS mount is broken in MAC OS
+  https://raw.githubusercontent.com/caskroom/homebrew-cask/b99d5280a3fae60bc18bf16ab314d9cc84e7af87/Casks/vagrant.rb
   virtualbox
+  zoom
   # Drivers
   # Quick Look plugins
   betterzipql
