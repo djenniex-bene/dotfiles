@@ -7,10 +7,12 @@ is_osx || return 1
 # Ensure the cask keg and recipe are installed.
 kegs=(
   caskroom/cask
-  homebrew/science
   caskroom/fonts
   caskroom/versions
+  homebrew/dupes
   homebrew/php
+  homebrew/science
+  homebrew/versions
 )
 brew_tap_kegs
 
