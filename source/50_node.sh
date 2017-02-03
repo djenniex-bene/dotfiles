@@ -31,8 +31,10 @@ npm_globals=(
   eslint
   grunt-cli
   grunt-init
+  gulp
   linken
   #node-inspector Fails on install, might not be needed with NodeV7
+  npm-check-updates
   pushstate-server
   yo
 )
