@@ -12,7 +12,6 @@ kegs=(
   homebrew/dupes
   homebrew/php
   homebrew/science
-  homebrew/versions
 )
 brew_tap_kegs
 
@@ -31,7 +30,7 @@ casks=(
   charles
   chromium
   docker
-  docker-toolbox
+  #docker-toolbox
   easysimbl
   evernote
   fastscripts

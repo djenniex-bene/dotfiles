@@ -37,6 +37,7 @@ recipes=(
   php70
   phpmd
   sl
+  socat
   ssh-copy-id
   terminal-notifier
   the_silver_searcher
