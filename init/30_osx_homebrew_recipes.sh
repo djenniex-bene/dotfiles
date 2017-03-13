@@ -28,6 +28,7 @@ recipes=(
   hub
   id3tool
   jq
+  lasspass-cli --with-pinentry
   lesspipe
   man2html
   mongodb
