@@ -21,6 +21,7 @@
   rv = review
   st = status
   ksdiff = difftool -y -t Kaleidoscope
+	aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
 [branch "master"]
   remote = origin
   merge = refs/heads/master

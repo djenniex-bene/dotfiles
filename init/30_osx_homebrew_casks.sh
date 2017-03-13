@@ -25,7 +25,6 @@ casks=(
   alfred
   atom
   bettertouchtool
-  beyond-compare
   # box-sync Weirdness because of other install
   charles
   chromium
@@ -43,6 +42,7 @@ casks=(
   java
   # karabiner NOT SUPPORTED
   lastpass
+  meld
   mysqlworkbench
   omnidisksweeper
   phpstorm

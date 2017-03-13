@@ -42,6 +42,7 @@ recipes=(
   terminal-notifier
   the_silver_searcher
   tree
+  unison
   wget
 )
 
