@@ -98,15 +98,25 @@ Why? Because I often completely break this repo while updating. Which means that
 
 1. [Read my gently-worded note](#heed-this-critically-important-warning-before-you-install)
 1. Fork this repo
-1. Open a terminal/shell and do this:
+1. Open a terminal/shell and do this (change `cowboy` and `master` as appropriate):
+
+#### Ubuntu
 
 ```sh
-export github_user=YOUR_GITHUB_USER_NAME
-
-bash -c "$(curl -fsSL https://raw.github.com/$github_user/dotfiles/master/bin/dotfiles)" && source ~/.bashrc
+export DOTFILES_GH_USER=cowboy
+export DOTFILES_GH_BRANCH=master
+bash -c "$(wget -qO- https://raw.github.com/$DOTFILES_GH_USER/dotfiles/$DOTFILES_GH_BRANCH/bin/dotfiles)" && source ~/.bashrc
 ```
 
-Since you'll be using the [dotfiles][dotfiles] command on subsequent runs, you'll only have to export the `github_user` variable for the initial install.
+#### macOS
+
+```sh
+export DOTFILES_GH_USER=cowboy
+export DOTFILES_GH_BRANCH=master
+bash -c "$(curl -fsSL https://raw.github.com/$DOTFILES_GH_USER/dotfiles/$DOTFILES_GH_BRANCH/bin/dotfiles)" && source ~/.bashrc
+```
+
+Since you'll be using the [dotfiles][dotfiles] command on subsequent runs, you'll only have to set the `DOTFILES_GH_USER` variable for the initial install, but if you have a custom branch, you _will_ need to export `DOTFILES_GH_BRANCH` for subsequent runs.
 
 There's a lot of stuff that requires admin access via `sudo`, so be warned that you might need to enter your password here or there.
 
@@ -125,13 +135,13 @@ I think [my bash prompt](source/50_prompt.sh) is awesome. It shows git and svn r
 
 Git repos display as **[branch:flags]** where flags are:
 
-**?** untracked files  
-**!** changed (but unstaged) files  
+**?** untracked files
+**!** changed (but unstaged) files
 **+** staged files
 
 SVN repos display as **[rev1:rev2]** where rev1 and rev2 are:
 
-**rev1** last changed revision  
+**rev1** last changed revision
 **rev2** revision
 
 Check it out:
@@ -139,11 +149,11 @@ Check it out:
 ![My awesome bash prompt](http://farm8.staticflickr.com/7142/6754488927_563dd73553_b.jpg)
 
 ## Inspiration
-<https://github.com/gf3/dotfiles>  
-<https://github.com/mathiasbynens/dotfiles>  
+<https://github.com/gf3/dotfiles>
+<https://github.com/mathiasbynens/dotfiles>
 (and 15+ years of accumulated crap)
 
 ## License
-Copyright (c) 2014 "Cowboy" Ben Alman  
-Licensed under the MIT license.  
+Copyright (c) 2014 "Cowboy" Ben Alman
+Licensed under the MIT license.
 <http://benalman.com/about/license/>
