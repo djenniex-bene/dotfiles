@@ -1,9 +1,9 @@
 # Editing
 
 if [[ ! "$SSH_TTY" ]] && is_osx; then
-  export EDITOR='atom'
+  export EDITOR='atom --wait'
   export LESSEDIT='mvim ?lm+%lm -- %f'
-  export GIT_EDITOR='atom'
+  export GIT_EDITOR='atom --wait'
 else
   export EDITOR='vim'
 fi
