@@ -25,7 +25,6 @@ casks=(
   alfred
   atom
   awscli
-  bettertouchtool
   # box-sync Weirdness because of other install
   charles
   chromium
