@@ -1,5 +1,7 @@
 # Editing
 
+export EDITOR=vim
+
 if [[ ! "$SSH_TTY" ]] && is_osx; then
   export EDITOR='atom -n -w'
   export LESSEDIT='mvim ?lm+%lm -- %f'

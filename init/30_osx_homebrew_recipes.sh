@@ -6,8 +6,8 @@ is_osx || return 1
 
 # Homebrew recipes
 recipes=(
-  android-platform-tools
   ansible
+  awscli
   bash
   bash-completion
   brew-cask-completion
@@ -17,6 +17,7 @@ recipes=(
   colordiff
   composer
   composer-completion
+  coreutils
   cowsay
   diff-so-fancy
   fwatch
@@ -34,14 +35,16 @@ recipes=(
   mongodb
   nmap
   pcre
-  php56
-  php70
+  php71
   phpmd
+  postgresql
+  reattach-to-user-namespace
   sl
   socat
   ssh-copy-id
   terminal-notifier
   the_silver_searcher
+  tmux
   tree
   unison
   wget

@@ -8,6 +8,8 @@ apt_packages=()
 deb_installed=()
 deb_sources=()
 
+installers_path="$DOTFILES/caches/installers"
+
 # Ubuntu distro release name, eg. "xenial"
 release_name=$(lsb_release -c | awk '{print $2}')
 
@@ -23,10 +25,8 @@ function add_ppa() {
 
 # Misc.
 apt_packages+=(
-  ansible
   awscli
   build-essential
-  byobu
   cmatrix
   cowsay
   curl
@@ -40,6 +40,7 @@ apt_packages+=(
   mercurial
   nmap
   postgresql
+  python-pip
   silversearcher-ag
   sl
   telnet
@@ -59,6 +60,10 @@ apt_packages+=(
   autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
   libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev
 )
+
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-ubuntu-16-04
+add_ppa ppa:ansible/ansible
+apt_packages+=(ansible)
 
 if is_ubuntu_desktop; then
   # http://www.omgubuntu.co.uk/2016/06/install-latest-arc-gtk-theme-ubuntu-16-04
@@ -97,6 +102,13 @@ if is_ubuntu_desktop; then
   apt_source_texts+=("deb http://download.virtualbox.org/virtualbox/debian $release_name contrib")
   apt_packages+=(virtualbox-5.1)
 
+  # https://www.skype.com/en/download-skype/skype-for-linux/
+  # https://community.skype.com/t5/Linux/Skype-for-Linux-Beta-signatures-couldn-t-be-verified-because-the/td-p/4645756
+  apt_keys+=(https://repo.skype.com/data/SKYPE-GPG-KEY)
+  apt_source_files+=(skype)
+  apt_source_texts+=("deb  https://repo.skype.com/deb stable main")
+  apt_packages+=(skypeforlinux)
+
   # http://askubuntu.com/a/190674
   add_ppa ppa:webupd8team/java
   apt_packages+=(oracle-java8-installer)
@@ -121,11 +133,14 @@ if is_ubuntu_desktop; then
     fonts-mplus
     k4dirstat
     rofi
+    network-manager-openconnect
+    network-manager-openconnect-gnome
     openssh-server
     shutter
     transgui
     unity-tweak-tool
     vlc
+    xclip
     zenmap
   )
 
@@ -141,6 +156,10 @@ if is_ubuntu_desktop; then
   #   sudo sed -i'' "s/Specification.all = nil/Specification.reset/" /usr/lib/ruby/vendor_ruby/vagrant/bundler.rb
   # }
 
+  # https://launchpad.net/grub-customizer
+  add_ppa ppa:danielrichter2007/grub-customizer
+  apt_packages+=(grub-customizer)
+
   # https://support.gitkraken.com/how-to-install
   deb_installed+=(/usr/bin/gitkraken)
   deb_sources+=(https://release.gitkraken.com/linux/gitkraken-amd64.deb)
@@ -150,21 +169,22 @@ if is_ubuntu_desktop; then
   deb_installed+=(/usr/bin/dropbox)
   deb_sources+=("https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb")
 
-  # https://github.com/raelgc/scudcloud#ubuntukubuntu-and-mint
   # http://askubuntu.com/a/852727
-  add_ppa ppa:rael-gc/scudcloud
-  apt_packages+=(scudcloud)
+  apt_packages+=(cabextract)
   deb_installed+=(/usr/share/fonts/truetype/msttcorefonts)
-  deb_sources+=(http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb)
-  function preinstall_scudcloud() {
+  deb_sources+=(deb_source_msttcorefonts)
+  function deb_source_msttcorefonts() {
     echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+    echo http://ftp.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb
   }
-  function postinstall_scudcloud() {
-    sudo dpkg-divert --add --rename --divert /usr/share/pixmaps/scudcloud.png.real /usr/share/pixmaps/scudcloud.png
-    sudo cp $DOTFILES/conf/ubuntu/scudcloud.png /usr/share/pixmaps/
-    sudo chmod +r /usr/share/pixmaps/scudcloud.png
-    sudo update-desktop-database
-  }
+
+  # https://slack.com/downloads/instructions/linux
+  deb_installed+=(/usr/bin/slack)
+  deb_sources+=(https://downloads.slack-edge.com/linux_releases/slack-desktop-2.5.2-amd64.deb)
+
+  # https://discordapp.com/download
+  deb_installed+=(/usr/bin/discord)
+  deb_sources+=("https://discordapp.com/api/download?platform=linux&format=deb")
 
   # http://askubuntu.com/questions/854480/how-to-install-the-steam-client/854481#854481
   apt_packages+=(python-apt)
@@ -193,6 +213,9 @@ function other_stuff() {
       sudo make install
     )
   fi
+  # Install misc bins from zip file.
+  install_from_zip ngrok 'https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip'
+  install_from_zip terraform 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_linux_amd64.zip'
 }
 
 ####################
@@ -242,10 +265,11 @@ e_header "Updating APT"
 sudo apt-get -qq update
 
 # Only do a dist-upgrade on initial install, otherwise do an upgrade.
+e_header "Upgrading APT"
 if is_dotfiles_bin; then
-  sudo apt-get -qq upgrade
+  sudo apt-get -qy upgrade
 else
-  sudo apt-get -qq dist-upgrade
+  sudo apt-get -qy dist-upgrade
 fi
 
 # Install APT packages.
@@ -267,7 +291,6 @@ function __temp() { [[ ! -e "$1" ]]; }
 deb_installed_i=($(array_filter_i deb_installed __temp))
 
 if (( ${#deb_installed_i[@]} > 0 )); then
-  installers_path="$DOTFILES/caches/installers"
   mkdir -p "$installers_path"
   e_header "Installing debs (${#deb_installed_i[@]})"
   for i in "${deb_installed_i[@]}"; do
@@ -279,6 +302,24 @@ if (( ${#deb_installed_i[@]} > 0 )); then
     sudo dpkg -i "$installer_file"
   done
 fi
+
+# install bins from zip file
+function install_from_zip() {
+  local name=$1 url=$2 bins b zip tmp
+  shift 2; bins=("$@"); [[ "${#bins[@]}" == 0 ]] && bins=($name)
+  if [[ ! "$(which $name)" ]]; then
+    mkdir -p "$installers_path"
+    e_header "Installing $name"
+    zip="$installers_path/$(echo "$url" | sed 's#.*/##')"
+    wget -O "$zip" "$url"
+    tmp=$(mktemp -d)
+    unzip "$zip" -d "$tmp"
+    for b in "${bins[@]}"; do
+      sudo cp "$tmp/$b" "/usr/local/bin/$(basename $b)"
+    done
+    rm -rf $tmp
+  fi
+}
 
 # Run anything else that may need to be run.
 type -t other_stuff >/dev/null && other_stuff
