@@ -7,6 +7,7 @@ is_osx || return 1
 # Ensure the cask keg and recipe are installed.
 kegs=(
   caskroom/cask
+  caskroom/drivers
   caskroom/fonts
   caskroom/versions
   homebrew/dupes
@@ -37,12 +38,14 @@ casks=(
   flux
   google-chrome
   google-play-music-desktop-player
-  hazel
+  # hazel
   iterm2
   java
   # karabiner NOT SUPPORTED
+  karabiner-elements
   lastpass
   meld
+  microsoft-intellipoint
   mysqlworkbench
   omnidisksweeper
   phpstorm
@@ -71,7 +74,9 @@ casks=(
   colorpicker-developer
   colorpicker-skalacolor
   # Fonts
-  font-anonymous-pro
+  font-m-plus
+  font-mplus-nerd-font
+  font-mplus-nerd-font-mono
 )
 
 # Install Homebrew casks.
