@@ -3,7 +3,7 @@
 [core]
   autocrlf = input
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/davidjenniex/.gitignore_global
 	editor = atom --wait
   # insanely beautiful diffs
 	pager = diff-so-fancy | less --tabs=4 -RFX
@@ -79,3 +79,9 @@
   required = true
 [commit]
   template = ~/.gitmessage
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
