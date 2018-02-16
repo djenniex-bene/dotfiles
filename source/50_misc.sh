@@ -41,3 +41,8 @@ complete -F _complete_ssh_hosts ssh
 
 # Disable ansible cows }:]
 export ANSIBLE_NOCOWS=1
+
+# "fuck"
+if [[ "$(which thefuck)" ]]; then
+  eval $(thefuck --alias)
+fi

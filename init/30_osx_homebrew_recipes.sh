@@ -44,6 +44,7 @@ recipes=(
   ssh-copy-id
   terminal-notifier
   the_silver_searcher
+  thefuck
   tmux
   tree
   unison
