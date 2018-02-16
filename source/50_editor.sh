@@ -3,7 +3,8 @@
 export EDITOR=vim
 
 if [[ ! "$SSH_TTY" ]] && is_osx; then
-  [[ ! "$TMUX" ]] && EDITOR=mvim
+  # [[ ! "$TMUX" ]] && EDITOR=mvim
+  EDITOR=mvim
   export EDITOR='atom -n -w'
   export LESSEDIT='mvim ?lm+%lm -- %f'
   export GIT_EDITOR='atom -n -w'
