@@ -8,3 +8,5 @@ for p in "${paths[@]}"; do
   [[ -d "$p" ]] && PATH="$p:$(path_remove "$p")"
 done
 unset p paths
+
+export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"

@@ -36,11 +36,16 @@ npm_globals=(
   grunt-cli
   grunt-init
   gulp
+  gulp-cli
+  json-lint
+  json2yaml
   linken
   npm-check-updates
   node-inspector
   pushstate-server
   webpack
+  yaml2json
+  yarn
 )
 
 # Because "rm -rf node_modules && npm install" takes WAY too long. Not sure

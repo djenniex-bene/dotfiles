@@ -46,6 +46,7 @@ recipes=(
   the_silver_searcher
   thefuck
   tmux
+  tmux-xpanes
   tree
   unison
   wget
