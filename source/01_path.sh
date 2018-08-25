@@ -7,6 +7,5 @@ export PATH
 for p in "${paths[@]}"; do
   [[ -d "$p" ]] && PATH="$p:$(path_remove "$p")"
 done
+PATH=/usr/local/opt/curl/bin:"$(path_remove /usr/local/opt/curl/bin)"
 unset p paths
-
-export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"

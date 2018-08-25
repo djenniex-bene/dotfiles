@@ -14,6 +14,14 @@ function aws-list-services() {
   aws ecs list-services --cluster $1 | jq -r '.serviceArns|map((./"/")[1])|.[]'
 }
 
+function aws-list-instances() {
+  aws --profile live-prod-admin ec2 describe-instances \
+    --filter "Name=instance-state-name,Values=running" \
+    --query 'Reservations[].Instances[].{Name: Tags[?Key==`Name`].Value, IP: PrivateIpAddress}' \
+    | jq -r '.[] | "\(.Name[])\t\(.IP)"' -r \
+    | sort -u
+}
+
 # List all services by cluster for the current role
 function aws-list-services-by-cluster() {
   local clusters services
@@ -152,3 +160,24 @@ function aws-logs() {
     info LOG "Done!"
   fi
 }
+
+get_aws_profile_parameter() {
+  profile="${1?Please provide an AWS profile to configure.}"
+  param="${2?Please provide a parameter to fetch.}"
+  if ! aws configure --profile "$profile" get "$param" 2>/dev/null
+  then
+    >&2 echo "ERROR: Failed to retrieve [$param] for profile [$profile]."
+  fi
+}
+
+load_aws_profile() {
+  profile="${1?Please provide an AWS profile to configure.}"
+  export AWS_ACCESS_KEY_ID=$(get_aws_profile_parameter "$profile" "aws_access_key_id") &&
+  export AWS_SECRET_ACCESS_KEY=$(get_aws_profile_parameter "$profile" "aws_secret_access_key") &&
+  export AWS_REGION=$(get_aws_profile_parameter "$profile" "region");
+}
+
+>&2 echo "INFO: Loading AWS environt variables for the default profile."
+>&2 echo "INFO: To change this, run 'load_aws_profile <your_profile>'."
+load_aws_profile "default"
+complete -C '/usr/local/bin/aws_completer' aws
