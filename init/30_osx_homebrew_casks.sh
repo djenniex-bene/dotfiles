@@ -32,7 +32,7 @@ casks=(
   docker
   docker-compose
   easysimbl
-  evernote
+  # evernote
   fastscripts
   firefox
   flux

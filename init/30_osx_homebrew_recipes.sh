@@ -43,6 +43,7 @@ recipes=(
   socat
   ssh-copy-id
   terminal-notifier
+  terraform_landscape
   the_silver_searcher
   thefuck
   tmux

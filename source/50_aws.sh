@@ -15,11 +15,11 @@ function aws-list-services() {
 }
 
 function aws-list-instances() {
-  aws --profile live-prod-admin ec2 describe-instances \
+  aws ec2 describe-instances \
     --filter "Name=instance-state-name,Values=running" \
     --query 'Reservations[].Instances[].{Name: Tags[?Key==`Name`].Value, IP: PrivateIpAddress}' \
     | jq -r '.[] | "\(.Name[])\t\(.IP)"' -r \
-    | sort -u
+    | sort -u | column -t
 }
 
 # List all services by cluster for the current role
@@ -174,7 +174,16 @@ load_aws_profile() {
   profile="${1?Please provide an AWS profile to configure.}"
   export AWS_ACCESS_KEY_ID=$(get_aws_profile_parameter "$profile" "aws_access_key_id") &&
   export AWS_SECRET_ACCESS_KEY=$(get_aws_profile_parameter "$profile" "aws_secret_access_key") &&
-  export AWS_REGION=$(get_aws_profile_parameter "$profile" "region");
+  export AWS_REGION=$(get_aws_profile_parameter "$profile" "region") &&
+  export AWS_DEFAULT_REGION=$(get_aws_profile_parameter "$profile" "region");
+
+  if [ "$profile" = "shared-prod-admin" ]; then
+    export KITCHEN_SSH_KEY_NAME=$(get_aws_profile_parameter "$profile" "kitchen_ssh_key_name") &&
+    export KITCHEN_SSH_KEY_PEM=$(get_aws_profile_parameter "$profile" "kitchen_ssh_key_pem") &&
+    export AWS_SUBNET=$(get_aws_profile_parameter "$profile" "aws_subnet") &&
+    export AWS_OWNER_ID=$(get_aws_profile_parameter "$profile" "aws_owner_id") &&
+    export VAULT_FILE=$(get_aws_profile_parameter "$profile" "vault_file")
+  fi
 }
 
 >&2 echo "INFO: Loading AWS environt variables for the default profile."

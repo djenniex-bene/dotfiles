@@ -46,3 +46,23 @@ export ANSIBLE_NOCOWS=1
 if [[ "$(which thefuck)" ]]; then
   eval $(thefuck --alias)
 fi
+
+createrepo () {
+    local tty=
+    tty -s && tty=--tty
+    docker run \
+        $tty \
+        --rm \
+        --interactive \
+        --user $(id -u):$(id -g) \
+        --volume /etc/passwd:/etc/passwd:ro \
+        --volume /etc/group:/etc/group:ro \
+        -v $(pwd):/repo  \
+        createrepo "$@"
+}
+
+alias tfapply="terraform apply ~/code/Ops/tfplans/\$(ls -w1 -t ~/code/Ops/tfplans | head -1)"
+
+tfplan () {
+  terraform plan -out ~/code/Ops/tfplans/$(basename $(pwd))_$(date +%F_%H_%M_%S).tfplan "$@"
+}
